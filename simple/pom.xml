@@ -74,12 +74,14 @@
   
   <build>
     <plugins>
+      <!--  NOT NECESSARY BECAUSE JAR PACKAGING DOESNT NEED THIS, ONLY FOR KJAR IN RULES REPO
       <plugin>
         <groupId>org.kie</groupId>
         <artifactId>kie-maven-plugin</artifactId>
         <version>6.0.2-redhat-6</version>
         <extensions>true</extensions>
       </plugin>
+      -->
     </plugins>
   </build>
   
