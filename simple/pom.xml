@@ -4,7 +4,8 @@
 
 	<groupId>com.redhat</groupId>
 	<artifactId>cmaloney</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.1-SNAPSHOT</version>
+
 	<packaging>jar</packaging>
 
 	<name>simple</name>
@@ -34,12 +35,20 @@
     
     
     <!-- RULES REPO PLACED AS DEPENDENCY HERE TO ENSURE CONNECTIVITY -->
+    <!-- COMMENTED OUT TO TEST TALAL'S
     <dependency>
     	<groupId>com.redhat</groupId>
 		<artifactId>cmaloney-rules</artifactId>
 		<version>1.0-SNAPSHOT</version>
     </dependency>
-    
+    -->  
+
+    <!--DEPENDENCY OF TALAL'S RULES REPO AS A TEST --> 
+    <dependency>
+	<groupId>com.redhat</groupId>
+	<artifactId>tqadri-simple-knowledge</artifactId>
+	<version>1.0-SNAPSHOT</version>
+    </dependency> 
     
     <dependency>
 		<groupId>org.jboss.spec</groupId>
