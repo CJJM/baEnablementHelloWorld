@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.redhat</groupId>
+	<artifactId>cmaloney</artifactId>
+	<version>1.1-SNAPSHOT</version>
+
+	<packaging>jar</packaging>
+
+	<name>simple</name>
+  
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+ <distributionManagement>
+     <snapshotRepository>
+        <id>deployment</id>
+        <name>Internal Releases</name>
+        <url>http://nexus-rhcbap.rhcloud.com/nexus/content/repositories/snapshots</url>
+     </snapshotRepository>
+   </distributionManagement>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    
+    
+    <!-- RULES REPO PLACED AS DEPENDENCY HERE TO ENSURE CONNECTIVITY -->
+    <!-- COMMENTED OUT TO TEST TALAL'S
+    <dependency>
+    	<groupId>com.redhat</groupId>
+		<artifactId>cmaloney-rules</artifactId>
+		<version>1.0-SNAPSHOT</version>
+    </dependency>
+    -->  
+
+    <!--DEPENDENCY OF TALAL'S RULES REPO AS A TEST --> 
+    <dependency>
+	<groupId>com.redhat</groupId>
+	<artifactId>tqadri-simple-knowledge</artifactId>
+	<version>1.0-SNAPSHOT</version>
+    </dependency> 
+    
+    <dependency>
+		<groupId>org.jboss.spec</groupId>
+		<artifactId>jboss-javaee-6.0</artifactId>
+		<version>3.0.0.Final-redhat-1</version>
+		<type>pom</type>
+		<scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+        <groupId>org.drools</groupId>
+        <artifactId>drools-compiler</artifactId>
+        <version>6.0.2-redhat-6</version>
+    </dependency>
+	
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>1.0.7</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>1.0.7</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.6</version>
+			</dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <!--  NOT NECESSARY BECAUSE JAR PACKAGING DOESNT NEED THIS, ONLY FOR KJAR IN RULES REPO
+      <plugin>
+        <groupId>org.kie</groupId>
+        <artifactId>kie-maven-plugin</artifactId>
+        <version>6.0.2-redhat-6</version>
+        <extensions>true</extensions>
+      </plugin>
+      -->
+    </plugins>
+  </build>
+  
+</project>

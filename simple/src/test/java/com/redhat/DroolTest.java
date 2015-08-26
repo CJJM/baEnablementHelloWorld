@@ -1,58 +1,28 @@
 package com.redhat;
 
-import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
+import java.util.Collection;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.Assert;
 import org.junit.Test;
-import org.kie.api.KieBase;
-import org.kie.api.KieServices;
-import org.kie.api.logger.KieRuntimeLogger;
-//import org.kie.api.logger.KieRuntimeLogger;
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
 
 public class DroolTest {
 
-	  static KieBase kbase;
-	  static KieSession ksession;
-	  static KieRuntimeLogger klogger;
+	private StatelessDecisionService service = new StatelessDecisionServiceImplementation();
 
-	  @BeforeClass
-	  public static void setupKsession() {
-	        try {
-	            // load up the knowledge base and create session
-	            ksession = readKnowledgeBase();
-	            klogger = KieServices.Factory.get().getLoggers().newFileLogger(ksession, "auditLog");
-	        } catch (Throwable t) {
-	            t.printStackTrace();
-	        }
-	  }
+	@Test
+	public void helloWorldTest() {
+		// given
+		Collection<Object> facts = new ArrayList<Object>();
+		Greeting greeting = new Greeting();
+		facts.add(greeting);
+		Assert.assertNull(greeting.getGreeting());
 
-	  @AfterClass
-	  public static void closeKsession() {
-	        try {
-	            // closing resources
-	            klogger.close();
-	            ksession.dispose();
-	        } catch (Throwable t) {
-	            t.printStackTrace();
-	        }
-	  }
-	  
-	  @Test
-	  public void riskyAdultsTest() {
-		  ksession.fireAllRules();
-		  assertTrue( true );
-	  }
-	  
-	  private static KieSession readKnowledgeBase() throws Exception {
-	        
-	        KieServices ks = KieServices.Factory.get();
-	        KieContainer kContainer = ks.getKieClasspathContainer();
-	        KieSession kSession = kContainer.newKieSession();
-	        
-	        return kSession;
-	  }
-	    
+		// when
+		service.runRules(facts, "ruleflow");
+
+		// then
+		Assert.assertEquals("Hello, World!", greeting.getGreeting());
+	}
+
 }
